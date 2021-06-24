@@ -1,0 +1,182 @@
+{% extends './baza.html' %}
+{% load static %}
+{% block title %} World Time{% endblock %}
+
+{% block main %}
+<div class="content-wrapper">
+    <div class="container">
+        <div class="row" data-aos="fade-up">
+            <div class="col-xl-8 stretch-card grid-margin">
+                <div class="position-relative">
+                    <img
+                            alt="banner"
+                            class="img-fluid"
+                            src="{% static  'asosiy/assets/images/dashboard/banner.jpg' %}"
+                    />
+                    <div class="banner-content">
+                        <div class="badge badge-danger fs-12 font-weight-bold mb-3">
+                            global news
+                        </div>
+                        <h1 class="mb-0">GLOBAL PANDEMIC</h1>
+                        <h1 class="mb-2">
+                            Coronavirus Outbreak LIVE Updates: ICSE, CBSE Exams
+                            Postponed, 168 Trains
+                        </h1>
+                        <div class="fs-12">
+                            <span class="mr-2">Photo </span>10 Minutes ago
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 stretch-card grid-margin">
+                <div class="card bg-dark text-white">
+                    <div class="card-body">
+                        <h2>Latest news</h2>
+
+                        <div
+                                class="d-flex border-bottom-blue pt-3 pb-4 align-items-center justify-content-between"
+                        >
+                            <div class="pr-3">
+                                <h5>Virus Kills Member Of Advising Iran’s Supreme</h5>
+                                <div class="fs-12">
+                                    <span class="mr-2">Photo </span>10 Minutes ago
+                                </div>
+                            </div>
+                            <div class="rotate-img">
+                                <img
+                                        alt="thumb"
+                                        class="img-fluid img-lg"
+                                        src="{% static  'asosiy/assets/images/dashboard/home_1.jpg' %}"
+                                />
+                            </div>
+                        </div>
+
+                        <div
+                                class="d-flex border-bottom-blue pb-4 pt-4 align-items-center justify-content-between"
+                        >
+                            <div class="pr-3">
+                                <h5>Virus Kills Member Of Advising Iran’s Supreme</h5>
+                                <div class="fs-12">
+                                    <span class="mr-2">Photo </span>10 Minutes ago
+                                </div>
+                            </div>
+                            <div class="rotate-img">
+                                <img
+                                        alt="thumb"
+                                        class="img-fluid img-lg"
+                                        src="{% static  'asosiy/assets/images/dashboard/home_2.jpg' %}"
+                                />
+                            </div>
+                        </div>
+
+                        <div
+                                class="d-flex pt-4 align-items-center justify-content-between"
+                        >
+                            <div class="pr-3">
+                                <h5>Virus Kills Member Of Advising Iran’s Supreme</h5>
+                                <div class="fs-12">
+                                    <span class="mr-2">Photo </span>10 Minutes ago
+                                </div>
+                            </div>
+                            <div class="rotate-img">
+                                <img
+                                        alt="thumb"
+                                        class="img-fluid img-lg"
+                                        src="{% static  'asosiy/assets/images/dashboard/home_3.jpg' %}"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" data-aos="fade-up">
+            <div class="col-lg-3 stretch-card grid-margin">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>Category</h2>
+                        {% for yangilik_turlari in turi %}
+                        <ul class="vertical-menu">
+                            <li><a href="{% url 'asosiy' yangilik_turlari.id %}">{{yangilik_turlari.nomi}}</a></li>
+                        </ul>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 stretch-card grid-margin">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            {% for maqola in maqolalar %}
+                            <div class="col-sm-4 grid-margin">
+                                <div class="position-relative">
+                                    <div class="rotate-img">
+
+                                        <img
+                                                alt="thumb"
+                                                class="img-fluid"
+                                                src="{{ maqola.rasm.url }}"
+                                        />
+
+                                    </div>
+                                    <div class="badge-positioned">
+                            <span class="badge badge-danger font-weight-bold"
+                            >Flash news</span
+                            >
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-sm-8  grid-margin">
+
+                                <h2 class="mb-2 font-weight-600">
+                                    {{ maqola.nomi }}
+                                </h2>
+
+                                <p class="mb-0">
+                                    {{ maqola.tarif|truncatechars:100 }}
+                                </p><a href="{% url 'batafsil' maqola.id %}">
+                                <button style="padding:5px" type="button" class="btn btn-primary">see more</button>
+                            </a>
+                                <p class="text-muteed">Author: <strong> {{ maqola.muallif }}</strong></p>
+                                <div class="fs-13 mb-2">
+                                    <h6>{{maqola.vaqt|date:"H:i \/ d.m.Y"}}</h6>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-center">
+                                {% if maqolalar.has_previous %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ 1 }}" tabindex="-1" aria-disabled="true">1</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ maqolalar.previous_page_number }}"
+                                       aria-disabled="true">Previous</a>
+                                </li>
+                                {% endif %}
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">{{maqolalar.number}}</a>
+                                </li>
+                                <li class="page-item">
+                                    {% if maqolalar.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ maqolalar.next_page_number }}">Next</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ maqolalar.paginator.num_pages }}">{{maqolalar.paginator.num_pages}}</a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+{% endblock %}
