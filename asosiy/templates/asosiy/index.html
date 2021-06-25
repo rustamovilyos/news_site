@@ -1,4 +1,4 @@
-{% extends './baza.html' %}
+{% extends 'asosiy/baza.html' %}
 {% load static %}
 {% block title %} World Time{% endblock %}
 
@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row" data-aos="fade-up">
             <div class="col-xl-8 stretch-card grid-margin">
-                <div class="position-relative">
+                <div class="position-absolute">
                     <img
                             alt="banner"
                             class="img-fluid"
@@ -33,58 +33,36 @@
                     <div class="card-body">
                         <h2>Latest news</h2>
 
-                        <div
-                                class="d-flex border-bottom-blue pt-3 pb-4 align-items-center justify-content-between"
-                        >
-                            <div class="pr-3">
-                                <h5>Virus Kills Member Of Advising Iran’s Supreme</h5>
-                                <div class="fs-12">
-                                    <span class="mr-2">Photo </span>10 Minutes ago
-                                </div>
-                            </div>
-                            <div class="rotate-img">
-                                <img
-                                        alt="thumb"
-                                        class="img-fluid img-lg"
-                                        src="{% static  'asosiy/assets/images/dashboard/home_1.jpg' %}"
-                                />
-                            </div>
-                        </div>
+                        <div class="row">
+                            {% for maqola in maqolalar %}
 
-                        <div
-                                class="d-flex border-bottom-blue pb-4 pt-4 align-items-center justify-content-between"
-                        >
-                            <div class="pr-3">
-                                <h5>Virus Kills Member Of Advising Iran’s Supreme</h5>
-                                <div class="fs-12">
-                                    <span class="mr-2">Photo </span>10 Minutes ago
-                                </div>
-                            </div>
-                            <div class="rotate-img">
-                                <img
-                                        alt="thumb"
-                                        class="img-fluid img-lg"
-                                        src="{% static  'asosiy/assets/images/dashboard/home_2.jpg' %}"
-                                />
-                            </div>
-                        </div>
+                            <div class="col-sm-6 grid-margin">
+                                <div class="position-relative">
 
-                        <div
-                                class="d-flex pt-4 align-items-center justify-content-between"
-                        >
-                            <div class="pr-3">
-                                <h5>Virus Kills Member Of Advising Iran’s Supreme</h5>
-                                <div class="fs-12">
-                                    <span class="mr-2">Photo </span>10 Minutes ago
+                                        <img
+                                                alt="thumb"
+                                                class="img-fluid"
+                                                src="{{ maqola.rasm.url }}"
+                                        />
                                 </div>
                             </div>
-                            <div class="rotate-img">
-                                <img
-                                        alt="thumb"
-                                        class="img-fluid img-lg"
-                                        src="{% static  'asosiy/assets/images/dashboard/home_3.jpg' %}"
-                                />
+
+
+                            <div class="col-sm-6  grid-margin">
+<a style="text-decoration:none" href="{% url 'batafsil' maqola.id %}">
+                                <h3 class="mb-2 font-weight-600">
+                                    {{ maqola.nomi }}
+                                </h3>
+
+                                <p class="mb-0">
+                                    {{ maqola.tarif|truncatechars:40 }}
+                                </p>
+
+                            </a>
                             </div>
+
+                            <hr>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
@@ -135,7 +113,7 @@
                                 </h2>
 
                                 <p class="mb-0">
-                                    {{ maqola.tarif|truncatechars:100 }}
+                                    {{ maqola.tarif|truncatechars:130 }}
                                 </p><a href="{% url 'batafsil' maqola.id %}">
                                 <button style="padding:5px" type="button" class="btn btn-primary">see more</button>
                             </a>

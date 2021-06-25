@@ -47,6 +47,7 @@
 
 
 
+
     </script>
 
     <script>
@@ -55,6 +56,7 @@ setInterval(function() {
   var clockdat = document.getElementById("clockdat");
   clockdat.innerHTML = cd.toLocaleTimeString();
 }, 1000);
+
 
 
 
@@ -69,7 +71,7 @@ setInterval(function() {
 <div class="container-scroller">
     <div class="main-panel">
         <!-- partial:partials/_navbar.html -->
-<!--        {% block navbar %}-->
+        <!--        {% block navbar %}-->
         <header id="header">
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light">
@@ -98,9 +100,11 @@ setInterval(function() {
                                                 <i class="mdi mdi-close"></i>
                                             </button>
                                         </li>
+                                        <li class="nav-item active"><a class="nav-link"
+                                                                       href="{% url 'index' %}">HOME</a>
+                                            {% for yangilik_turlari in turi %}
 
-                                        {% for yangilik_turlari in turi %}
-
+                                        </li>
                                         <li class="nav-item active"><a class="nav-link"
                                                                        href="{% url 'asosiy' yangilik_turlari.id %}">{{yangilik_turlari.nomi}}</a>
                                         </li>
@@ -112,7 +116,14 @@ setInterval(function() {
                             <ul class="social-media">
 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="https://www.google.com"><i class="mdi mdi-magnify"></i></a>
+                                    <a class="nav-link" href="https://www.google.com"><i
+                                            class="mdi mdi-magnify"></i></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">Login</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">Sign in</a>
                                 </li>
                             </ul>
                         </div>
@@ -120,7 +131,7 @@ setInterval(function() {
                 </nav>
             </div>
         </header>
-<!--{% endblock %}-->
+        <!--{% endblock %}-->
         <!-- partial -->
         <div class="flash-news-banner">
             <div class="container">
@@ -196,25 +207,25 @@ setInterval(function() {
                             </ul>
                         </div>
                         <br>
-<!--                        <div class="col-sm-3">-->
+                        <!--                        <div class="col-sm-3">-->
 
-<!--                        </div>-->
+                        <!--                        </div>-->
 
                         <div class="col-sm-12">
                             <hr style="color: white; height:5px">
                             <h3 class="font-weight-bold mb-12">
                                 <a href="{% url 'team'  %}">Our Team Members
-                                    </a>
+                                </a>
                             </h3>
-                                </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </footer>
-
-        <!-- partial -->
     </div>
+    </footer>
+
+    <!-- partial -->
+</div>
 </div>
 <!-- inject:js -->
 <script src="{% static 'asosiy/assets/vendors/js/vendor.bundle.base.js' %}"></script>
