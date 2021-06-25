@@ -6,7 +6,7 @@ from django.views.generic import ListView, DetailView
 
 
 def index(request):
-    maqolalar = Article.objects.all()
+    maqolalar = Article.objects.all()[:4]
     kategoriyalar = Category.objects.all()
     return render(request, 'asosiy/index.html', {'turi': kategoriyalar, 'maqolalar': maqolalar})
 
