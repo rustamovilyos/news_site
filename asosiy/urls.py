@@ -5,7 +5,7 @@ from django.conf.urls.static import static
 from django.views.generic import TemplateView
 from .views import ArticleView
 
-
+app_name='asosiy'
 urlpatterns = [
     path('', views.index, name='index'),
     path('asosiy/<int:asosiy_id>/', views.asosiy, name='asosiy'),

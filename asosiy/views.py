@@ -4,6 +4,8 @@ from .models import Category, Article
 from django.core.paginator import Paginator
 from django.views.generic import ListView, DetailView
 
+app_name='asosiy'
+
 
 def index(request):
     maqolalar = Article.objects.all()[:3]

@@ -101,12 +101,12 @@ setInterval(function() {
                                             </button>
                                         </li>
                                         <li class="nav-item active"><a class="nav-link"
-                                                                       href="{% url 'index' %}">HOME</a>
+                                                                       href="{% url 'asosiy:index' %}">HOME</a>
                                             {% for yangilik_turlari in turi %}
 
                                         </li>
                                         <li class="nav-item active"><a class="nav-link"
-                                                                       href="{% url 'asosiy' yangilik_turlari.id %}">{{yangilik_turlari.nomi}}</a>
+                                                                       href="{% url 'asosiy:asosiy' yangilik_turlari.id %}">{{yangilik_turlari.nomi}}</a>
                                         </li>
 
                                         {% endfor %}
@@ -114,7 +114,6 @@ setInterval(function() {
                                 </div>
                             </div>
                             <ul class="social-media">
-
                                 <li class="nav-item">
                                     <a class="nav-link" href="https://www.google.com"><i
                                             class="mdi mdi-magnify"></i></a>
@@ -214,14 +213,13 @@ setInterval(function() {
                         <div class="col-sm-12">
                             <hr style="color: white; height:5px">
                             <h3 class="font-weight-bold mb-12">
-                                <a href="{% url 'team'  %}">Our Team Members
+                                <a href="{% url 'asosiy:team'  %}">Our Team Members
                                 </a>
                             </h3>
                         </div>
                     </div>
                 </div>
             </div>
-    </div>
     </footer>
 
     <!-- partial -->

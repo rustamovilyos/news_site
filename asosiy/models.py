@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.utils import timezone
 
 # Category - yangiliklar kategoriyasi(turi)
 class Category(models.Model):
@@ -13,4 +13,4 @@ class Article(models.Model):
     tarif = models.TextField(null=True)
     toifa = models.ForeignKey(Category, null=True, on_delete=models.CASCADE)
     rasm = models.ImageField(null=True)
-    vaqt = models.DateTimeField(null=True)
+    vaqt = models.DateTimeField(default=timezone.now, null=True)
